@@ -15,6 +15,14 @@ target_compile_options(
 		-std=c11
 )
 
+if (BUILD_FUZZER)
+target_compile_options(
+	"${PROJECT_NAME}-example"
+	PRIVATE
+    -fsanitize=fuzzer-no-link
+)
+endif()
+
 target_link_libraries(
 	"${PROJECT_NAME}-example"
 	PRIVATE
@@ -57,6 +65,13 @@ target_link_libraries(
 		xml
 )
 
+if (BUILD_FUZZER)
+target_compile_options(
+	"${PROJECT_NAME}-test-c"
+	PRIVATE
+    -fsanitize=fuzzer-no-link
+)
+endif()
 
 add_test(
 	NAME "${PROJECT_NAME}-test-c"
@@ -88,7 +103,6 @@ target_link_libraries(
 		xml
 )
 
-
 add_test(
 	NAME "${PROJECT_NAME}-test-cpp"
 	COMMAND "${PROJECT_NAME}-test-cpp"
@@ -101,6 +115,13 @@ add_test(
 )
 
 
+if (BUILD_FUZZER)
+target_compile_options(
+	"${PROJECT_NAME}-test-cpp"
+	PRIVATE
+    -fsanitize=fuzzer-no-link
+)
+endif()
 
 # Test huitre39
 add_executable(
@@ -120,6 +141,13 @@ target_link_libraries(
 		xml
 )
 
+if (BUILD_FUZZER)
+target_compile_options(
+	"${PROJECT_NAME}-test-huitre39"
+	PRIVATE
+    -fsanitize=fuzzer-no-link
+)
+endif()
 
 add_test(
 	NAME "${PROJECT_NAME}-test-huitre39"

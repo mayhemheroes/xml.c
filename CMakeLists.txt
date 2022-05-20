@@ -17,6 +17,12 @@ target_compile_options(
 		-std=c11
 )
 
+# Fuzzing Support
+if (BUILD_FUZZER)
+    message(STATUS "Building fuzzer!")
+    target_compile_options(xml PUBLIC -fsanitize=fuzzer-no-link)
+    target_link_options(xml PUBLIC -fsanitize=fuzzer-no-link)
+endif()
 
 # Options
 option(XML_PARSER_VERBOSE "Enable to be told everything the xml parser does" OFF)
@@ -48,4 +54,6 @@ target_include_directories(
 # Build unit cases
 enable_testing()
 add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/test")
-
+if (BUILD_FUZZER)
+    add_subdirectory("${CMAKE_CURRENT_LIST_DIR}/fuzz")
+endif()
