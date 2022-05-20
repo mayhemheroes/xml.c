@@ -28,4 +28,4 @@ COPY --from=builder /xml.c/test/test-attributes.xml /corpus
 
 ## Set up fuzzing!
 ENTRYPOINT []
-CMD /xml-fuzzer /corpus -close_fd_mask=2
+CMD /xml-fuzzer -close_fd_mask=2

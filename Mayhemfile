@@ -3,5 +3,5 @@ project: xml-c
 target: xml-fuzzer
 
 cmds:
-  - cmd: /xml-fuzzer /corpus -close_fd_mask=2
+  - cmd: /xml-fuzzer -close_fd_mask=2
     libfuzzer: true
