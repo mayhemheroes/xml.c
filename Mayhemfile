@@ -4,5 +4,5 @@ testsuite:
   - file://fuzz/corpus
 
 cmds:
-  - cmd: /xml-fuzzer -close_fd_mask=2
+  - cmd: /xml-fuzzer
     libfuzzer: true
