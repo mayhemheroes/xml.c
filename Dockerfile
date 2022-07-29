@@ -21,10 +21,10 @@ RUN make
 FROM --platform=linux/amd64 ubuntu:20.04
 COPY --from=builder /xml.c/build/fuzz/xml-fuzzer /
 
-## Configure corpus
-RUN mkdir /corpus
-COPY --from=builder /xml.c/test/test.xml /corpus
-COPY --from=builder /xml.c/test/test-attributes.xml /corpus
+## Configure testsuite
+RUN mkdir /testsuite
+COPY --from=builder /xml.c/test/test.xml /testsuite
+COPY --from=builder /xml.c/test/test-attributes.xml /testsuite
 
 ## Set up fuzzing!
 ENTRYPOINT []
